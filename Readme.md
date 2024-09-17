@@ -1,4 +1,17 @@
+
+       _____            _       _           ___ _______        _    
+      / ____|          | |     | |         |__ \__   __|      | |   
+     | |     __ _ _ __ | |_ ___| |__   __ _   ) | | | _____  _| |_  
+     | |    / _` | '_ \| __/ __| '_ \ / _` | / /  | |/ _ \ \/ / __| 
+     | |___| (_| | |_) | || (__| | | | (_| |/ /_  | |  __/>  <| |_  
+      \_____\__,_| .__/ \__\___|_| |_|\__,_|____| |_|\___/_/\_\\__| 
+                 | |                                                
+                 |_|                                                
+
+
 # Captcha2Text (Beta)
+
+| Note: This is currently in beta. The accuracy is not 100% but has been tested to be above 80% accuracy with text-based captchas. I'm still looking for large Captcha datasets to test the accuracy.
 
 Captcha2Text is a Python library that extracts text from captcha images using OpenAI's GPT-4 vision model.
 
