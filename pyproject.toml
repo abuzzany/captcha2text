@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "Captcha2Text"
+version = "0.1.0"
+description = "Extract text from captcha images"
+authors = ["Angel Buzany <buzzany@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8.1,<4.0"
+openai = "^0.27.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2.0"
+flake8 = "^5.0.4"  # This version supports Python 3.8.0
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
