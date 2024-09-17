@@ -13,17 +13,17 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 def encode_image(image_path):
-  with open(image_path, "rb") as image_file:
-    return base64.b64encode(image_file.read()).decode('utf-8')
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
 
 
 def read_captcha(image_path):
     try:
         base64_image = encode_image(image_path)
-        
+
         headers = {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {OPENAI_API_KEY}"
+            "Authorization": f"Bearer {OPENAI_API_KEY}",
         }
 
         payload = {
@@ -34,23 +34,25 @@ def read_captcha(image_path):
                     "content": [
                         {
                             "type": "text",
-                            "text": "Get the text from the image. Don't include blank spaces."
+                            "text": "Get the text from the image. Don't include blank spaces.",
                         },
                         {
                             "type": "image_url",
                             "image_url": {
                                 "url": f"data:image/jpeg;base64,{base64_image}"
-                            }
-                        }
-                    ]
+                            },
+                        },
+                    ],
                 }
             ],
-            "max_tokens": 300
+            "max_tokens": 300,
         }
 
-        response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
+        response = requests.post(
+            "https://api.openai.com/v1/chat/completions", headers=headers, json=payload
+        )
         response.raise_for_status()
-        return response.json()['choices'][0]['message']['content'].strip()
+        return response.json()["choices"][0]["message"]["content"].strip()
     except requests.RequestException as e:
         raise Exception(f"API request failed: {str(e)}")
     except KeyError:
