@@ -9,7 +9,7 @@ load_dotenv()
 
 
 # OpenAI API Key
-api_key = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 def encode_image(image_path):
@@ -21,8 +21,13 @@ def read_captcha(image_path):
     try:
         base64_image = encode_image(image_path)
         
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {OPENAI_API_KEY}"
+        }
+
         payload = {
-            "model": "gpt-4-vision-preview",
+            "model": "gpt-4o-mini",
             "messages": [
                 {
                     "role": "user",
@@ -43,7 +48,7 @@ def read_captcha(image_path):
             "max_tokens": 300
         }
 
-        response = requests.post("https://api.openai.com/v1/chat/completions", headers=self.headers, json=payload)
+        response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
         response.raise_for_status()
         return response.json()['choices'][0]['message']['content'].strip()
     except requests.RequestException as e:
